@@ -1,5 +1,5 @@
 {
-  "name": "datamining",
+  "name": "tesla-to-elasticsearch",
   "version": "0.0.1",
   "description": "collects data from your car and stores in elasticsearch",
   "main": "index.js",
