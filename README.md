@@ -24,4 +24,4 @@ Start polling with
 
 > node index.js
 
-It currently makes three API requests simultaneously without throttling so beware in case of API overuse. In addition to data gathered from `charge_state`, `drive_state`, and `vehicle_state`, it also adds a `timestamp`-field and a `location`-field with the current timestamp, and location gathered from drive_state formatted for use as a `geo_point` type in elasticsearch, plottable in kibana.
+It currently makes four API requests simultaneously without throttling so beware in case of API overuse. In addition to data gathered from `charge_state`, `drive_state`, `vehicle_state`, and `climate_state` it also adds a `timestamp`-field and a `location`-field with the current timestamp, and location gathered from drive_state formatted for use as a `geo_point` type in elasticsearch, plottable in kibana.

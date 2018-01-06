@@ -61,6 +61,17 @@ function getVehicleState (vehicleId) {
     .then(response => response.response)
 }
 
+function getClimateState (vehicleId) {
+  console.log('requesting ', `https://owner-api.teslamotors.com/api/1/vehicles/${vehicleId}/data_request/climate_state`)
+  return rq({
+    method: 'GET',
+    uri: `https://owner-api.teslamotors.com/api/1/vehicles/${vehicleId}/data_request/climate_state`,
+    auth,
+    json: true
+  })
+    .then(response => response.response)
+}
+
 function mapState (state) {
   return Object.assign({}, state, {
     timestamp: new Date(),
@@ -75,9 +86,10 @@ function getState (vehicleId) {
   return Promise.all([
     getChargeState(vehicleId),
     getDriveState(vehicleId),
-    getVehicleState(vehicleId)
+    getVehicleState(vehicleId),
+    getClimateState(vehicleId)
   ])
-    .then(([chargeState, driveState, vehicleState]) => ({chargeState, driveState, vehicleState}))
+    .then(([chargeState, driveState, vehicleState, climateState]) => ({chargeState, driveState, vehicleState, climateState}))
     .then(mapState)
 }
 
