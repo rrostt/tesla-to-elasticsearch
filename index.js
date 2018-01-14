@@ -95,10 +95,9 @@ function getState (vehicleId) {
 
 function getNext (vehicleId) {
   return getState(vehicleId)
-    // .then(state => console.log(JSON.stringify(state, null, 2)) || state)
     .then(state => elastic.saveState(state))
-    .then(() => getNext(vehicleId))
-    .catch(() => setTimeout(() => getNext(vehicleId), 5000))
+    .then(() => setTimeout(() => getNext(vehicleId), config.delayBetweenRequests))
+    .catch((err) => console.log('error', err) || setTimeout(() => getNext(vehicleId), 5000))
 }
 
 getVehicleId()
