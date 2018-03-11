@@ -4,6 +4,7 @@
   "description": "collects data from your car and stores in elasticsearch",
   "main": "index.js",
   "scripts": {
+    "deploy:prod": "docker-compose -f docker-compose-deploy.yml up --build -d",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mattias Rost",
