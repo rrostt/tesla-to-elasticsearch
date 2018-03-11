@@ -75,7 +75,11 @@ function getClimateState (vehicleId) {
 function mapState (state) {
   return Object.assign({}, state, {
     climateState: Object.assign({}, state.climateState, {
-      seat_heater_left: state.climateState.seat_heater_left || 0
+      seat_heater_left: state.climateState.seat_heater_left || 0,
+      seat_heater_right: state.climateState.seat_heater_right || 0,
+      seat_heater_rear_left: state.climateState.seat_heater_rear_left || 0,
+      seat_heater_rear_center: state.climateState.seat_heater_rear_center || 0,
+      seat_heater_rear_right: state.climateState.seat_heater_rear_right || 0
     }),
     timestamp: new Date(),
     location: {
@@ -98,7 +102,6 @@ function getState (vehicleId) {
 
 function getNext (vehicleId) {
   return getState(vehicleId)
-    .then(state => mapState)
     .then(state => elastic.saveState(state))
     .then(() => setTimeout(() => getNext(vehicleId), config.delayBetweenRequests))
     .catch((err) => console.log('error', err) || setTimeout(() => getNext(vehicleId), 5000))
